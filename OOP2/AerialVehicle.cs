@@ -30,14 +30,19 @@ namespace OOP2
         }
         public void FlyDown(int HowManyFeet)
         {
-            Console.WriteLine("The desired amount of feet to descend: " + HowManyFeet + " feet");
-            if ((CurrentAltitude - HowManyFeet) < 0)
-                Console.WriteLine("The desired feet to descend is not a viable number. Please choose a number less or equal to current altitude");
-            else
+            if (IsFlying)
             {
-                Console.WriteLine("The plane has descended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude - HowManyFeet) + " feet");
-                CurrentAltitude = CurrentAltitude - HowManyFeet;
+                Console.WriteLine("The desired amount of feet to descend: " + HowManyFeet + " feet");
+                if ((CurrentAltitude - HowManyFeet) < 0)
+                    Console.WriteLine("The desired feet to descend is not a viable number. Please choose a number less or equal to current altitude");
+                else
+                {
+                    Console.WriteLine("The plane has descended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude - HowManyFeet) + " feet");
+                    CurrentAltitude = CurrentAltitude - HowManyFeet;
+                }
             }
+            else
+                Console.WriteLine("vehicle is not flying.");
         }
         public void FlyUp()
         {
