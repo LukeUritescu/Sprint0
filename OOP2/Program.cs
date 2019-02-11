@@ -55,6 +55,41 @@ namespace OOP2
             Console.WriteLine("Call ap.FlyDown(ap.CurrentAltitude) this should land");
             ap.FlyDown(ap.CurrentAltitude);
             Console.WriteLine(ap.About());
+            //Allow to see results for airplane then clear screen for toyplane testing
+            Console.ReadLine();
+            Console.Clear();
+
+            ToyPlane toy = new ToyPlane();
+            Console.WriteLine(toy.About());
+
+            Console.WriteLine("\nToyplaneTakeOffTests.");
+            Console.WriteLine("\nCall toy.TakeOff():");
+            Console.WriteLine(toy.TakeOff());
+            Console.WriteLine(toy.getEngineStartedString());
+            Console.WriteLine(toy.GetWindUpString());
+
+            //Wind up and start engine
+            toy.WindUp();
+            toy.StartEngine();
+            toy.TakeOff();
+            //Fly Up
+            Console.WriteLine("\nFly Up Tests");
+            toy.FlyUp(10);
+            Console.WriteLine(toy.About());
+            Console.WriteLine("\nCall FlyUp(60) which would be 70ft total");
+            toy.FlyUp(60); //Shouldn't work;
+            toy.FlyUp(40); //should reach max
+            toy.FlyUp(10); //shouldn't work
+            Console.WriteLine(toy.About());
+
+            //Land
+            Console.WriteLine("\nFly Down");
+            Console.WriteLine("\nCall toy.FlyDown(60) fly down 60ft");
+            toy.FlyDown(60); //Won't work
+            Console.WriteLine("\nCall toy.FlyDown(currentAltitude) this should land");
+            toy.FlyDown(toy.CurrentAltitude);
+            Console.WriteLine(toy.About());
+
 
         }
     }

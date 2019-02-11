@@ -24,29 +24,24 @@ namespace OOP2
 
         public override void StartEngine()
         {
-            if (IsWoundUp)
+            if (IsWoundUp) {
+                Engine.Start();
                 Console.WriteLine(this + " is wound up. Engine started");
+            }
             else
                 Console.WriteLine(this + " is not wound up, engine can not be started.");
-        }
-
-        public override string TakeOff()
-        {
-            if (Engine.IsStarted)
-                return this + " is taking off.";
-            else
-                return this + " engine isn't started can not take off.";
         }
 
         public ToyPlane() : base()
         {
             MaxAltitude = 50;
+            IsFlying = false;
         }
-        protected void UnWind()
+        public void UnWind()
         {
             IsWoundUp = false;
         }
-        protected void WindUp()
+        public void WindUp()
         {
             IsWoundUp = true;
         }

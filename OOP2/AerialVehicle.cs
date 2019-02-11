@@ -30,12 +30,12 @@ namespace OOP2
         }
         public void FlyDown(int HowManyFeet)
         {
-            Console.WriteLine("The desired amaount of feet to descend: " + HowManyFeet + " feet");
+            Console.WriteLine("The desired amount of feet to descend: " + HowManyFeet + " feet");
             if ((CurrentAltitude - HowManyFeet) < 0)
                 Console.WriteLine("The desired feet to descend is not a viable number. Please choose a number less or equal to current altitude");
             else
             {
-                Console.WriteLine("The plane as descended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude - HowManyFeet) + " feet");
+                Console.WriteLine("The plane has descended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude - HowManyFeet) + " feet");
                 CurrentAltitude = CurrentAltitude - HowManyFeet;
             }
         }
@@ -45,14 +45,19 @@ namespace OOP2
         }
         public void FlyUp(int HowManyFeet)
         {
-            Console.WriteLine("The desired amaount of feet to ascend: " + HowManyFeet + " feet");
-            if ((HowManyFeet + CurrentAltitude) > MaxAltitude)
-                Console.WriteLine("The desired feet to ascend is not a viable number. Please choose a number that will not exceed " + MaxAltitude);
-            else
+            if (IsFlying)
             {
-                Console.WriteLine(this +" has ascended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude + HowManyFeet) + " feet");
-                CurrentAltitude = CurrentAltitude + HowManyFeet;
+                Console.WriteLine("The desired amount of feet to ascend: " + HowManyFeet + " feet");
+                if ((HowManyFeet + CurrentAltitude) > MaxAltitude)
+                    Console.WriteLine("The desired feet to ascend is not a viable number. Please choose a number that will not exceed " + MaxAltitude);
+                else
+                {
+                    Console.WriteLine(this + " has ascended " + HowManyFeet + " feet, and is now at " + (CurrentAltitude + HowManyFeet) + " feet");
+                    CurrentAltitude = CurrentAltitude + HowManyFeet;
+                }
             }
+            else
+                Console.WriteLine("vehicle is not flying.");
         }
         public string getEngineStartedString()
         {
@@ -72,7 +77,10 @@ namespace OOP2
         public virtual string TakeOff()
         {
             if (Engine.IsStarted)
+            {
+                IsFlying = true;
                 return "This engine has started";
+            }
             else
             {
                 return "This engine can't fly until the engine is started";
